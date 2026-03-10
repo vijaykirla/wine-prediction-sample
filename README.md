@@ -1,33 +1,11 @@
-1. create a new directory with name "wine-prediction" in your local environment
-2. in the directory, create a folder named "data"
-3. inside the "data" folder create a dataset "wine-quality-sample" in csv format
-4. create python virtual environment using command prompt "python -m venv .venv"
-5. activate the environment ".venv\Scripts\activate.bat"
-6. install data version control (dvc) using the command "pip install dvc"
-7. intitialize dvc using "dvc init"
-8. add the dataset to dvc using "dvc add data/wine-quality-sample.csv"
-9. after executing the above the command metadata file with the name "wine-quality-sample.csv.dvc" will be created in "data" folder
-10. store dataset in aws s3 bucket and dvc file in github
-11. create s3 bucket in aws, create access key in security credentials
-12. add the s3 bucket as remote using "dvc remote add -d wineremote s3://bucket-name"
-13. install aws cli to configure s3 bucket
-14. execute "aws configure" and enter the access key id, secret access key, default region name
-15. install "pip install dvc_s3"
-17. add "wine-quality-sample.csv.dvc" to git
-18. git commit
-19. execute "dvc push" to push dataset to s3 bucket
-20. finally the .dvc folder which contains config and metadata file "wine-quality-sample.csv.dvc" in the data folder should be committed to github and the dataset to s3 bucket
     
-# Wine Quality Prediction — DVC Setup Guide
-### Data Version Control with AWS S3 & GitHub
+# Data Version Control with AWS S3 & GitHub
 
 ---
 
 ## Overview
 
-This guide walks you through setting up a versioned machine learning data pipeline for a wine quality prediction project. You will use **Data Version Control (DVC)** to track your dataset and **AWS S3** as remote storage, while keeping metadata and configuration in GitHub.
-
-By the end of this setup, your dataset will be stored in S3, and the lightweight `.dvc` metadata files will be committed to GitHub — enabling reproducible, version-controlled ML workflows.
+You will use **Data Version Control (DVC)** to track your dataset and **AWS S3** as remote storage, while keeping metadata and configuration in GitHub.
 
 ---
 
@@ -37,13 +15,12 @@ By the end of this setup, your dataset will be stored in S3, and the lightweight
 - Git installed and configured with a GitHub account
 - An active AWS account with permissions to create S3 buckets and IAM access keys
 - AWS CLI installed (see Step 13)
-- Basic familiarity with the command line / terminal
 
 ---
 
 ## Project Structure
 
-After completing this guide, your project directory will look like this:
+project directory will look like this:
 
 ```
 wine-prediction/
@@ -258,23 +235,4 @@ Pushes the `.dvc/` folder, metadata files, and `.gitignore` to GitHub.
 
 ---
 
-## What Gets Stored Where
 
-| Item | GitHub | AWS S3 |
-|---|---|---|
-| `wine-quality-sample.csv` (dataset) | ❌ Not stored | ✅ Stored here |
-| `wine-quality-sample.csv.dvc` (metadata) | ✅ Committed | ❌ Not stored |
-| `.dvc/config` (remote config) | ✅ Committed | ❌ Not stored |
-| `.gitignore` (auto-updated) | ✅ Committed | ❌ Not stored |
-| `.venv/` (virtual environment) | ❌ Not committed | ❌ Not stored |
-
----
-
-## Common Mistakes to Avoid
-
-- **Missing step:** The original README skipped Step 16 — numbering jumped from 15 to 17. This is corrected above (19 steps total).
-- **Wrong package name:** Use `dvc-s3`, not `dvc_s3`.
-- **Forgetting `.gitignore`:** Always stage it with the `.dvc` file after running `dvc add`.
-- **Wrong activation command:** `.venv\Scripts\activate.bat` is Windows-only. Use `source .venv/bin/activate` on macOS/Linux.
-- **Credential exposure:** Never commit AWS keys. Use `aws configure` or environment variables.
-- **Order of operations:** Always configure AWS CLI (Step 14) before running `dvc push` (Step 18).
