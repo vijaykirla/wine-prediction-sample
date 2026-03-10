@@ -1,7 +1,7 @@
     
-# Data Version Control with AWS S3 & GitHub
+### Data Version Control with AWS S3 & GitHub
 
-
+---
 
 ## Overview
 
