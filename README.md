@@ -1,11 +1,7 @@
     
-### Data Version Control with AWS S3 & GitHub
+## Data Version Control with AWS S3 & GitHub
 
----
-
-## Overview
-
-You will use **Data Version Control (DVC)** to track your dataset and **AWS S3** as remote storage, while keeping metadata and configuration in GitHub.
+Using **Data Version Control (DVC)** to track dataset and **AWS S3** as remote storage, while keeping metadata and configuration in GitHub.
 
 ---
 
